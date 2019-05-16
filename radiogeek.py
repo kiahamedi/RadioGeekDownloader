@@ -1,12 +1,11 @@
 #"https://jadi.net/audio/"
 
-from BeautifulSoup import BeautifulSoup
-import urllib2
-import re
+from bs4 import BeautifulSoup
+import requests
 
 url = "https://jadi.net/audio/"
-html_page = urllib2.urlopen(url)
-soup = BeautifulSoup(html_page)
+html_page = requests.get(url)
+soup = BeautifulSoup(html_page.content,'html5lib')
  
 for link in soup.findAll('a'):
     print(url+str(link.get('href')))
